@@ -6,18 +6,24 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { TaskPlannerComponent } from './components/task-planner/task-planner.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { TaskInputComponent } from './components/task-input/task-input.component';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
         AppComponent,
         PageNotFoundComponent,
-        TaskPlannerComponent
+        TaskPlannerComponent,
+        TaskInputComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        MatButtonModule
+        MatButtonModule,
+        MatInputModule,
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

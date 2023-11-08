@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ITask } from 'src/app/types/types';
 
 @Component({
   selector: 'app-task-planner',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
 export class TaskPlannerComponent {
 
   public title = 'Task Planner';
+  public taskList: ITask[] = [];
 
+  public addTaskToList(task: ITask): void {
+    this.taskList.push(task);
+  }
 }
