@@ -17,11 +17,11 @@ describe('TaskPlannerComponent', () => {
                     TaskPlannerComponent,
                     TaskInputComponent
                 ],
-                imports: [
-                    MatInputModule,
-                    ReactiveFormsModule,
-                    BrowserAnimationsModule
-                ]
+            imports: [
+                MatInputModule,
+                ReactiveFormsModule,
+                BrowserAnimationsModule
+            ]
         }).compileComponents();
 
         fixture = TestBed.createComponent(TaskPlannerComponent);

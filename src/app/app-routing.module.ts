@@ -4,12 +4,12 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { TaskPlannerComponent } from './components/task-planner/task-planner.component';
 
 const routes: Routes = [
-  { path: '', component: TaskPlannerComponent, title: 'Task Planner' },
-  { path: '**', component: PageNotFoundComponent, title: 'Page Not Found' }
+    { path: '', component: TaskPlannerComponent, title: 'Task Planner' },
+    { path: '**', component: PageNotFoundComponent, title: 'Page Not Found' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

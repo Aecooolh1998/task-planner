@@ -53,7 +53,7 @@ describe('TaskInputComponent', () => {
                 description: 'Make Bed'
             });
         });
-        
+
         //TODO: Test For When it is invalid, no validators currently so it cannot be tested.
     });
 });
