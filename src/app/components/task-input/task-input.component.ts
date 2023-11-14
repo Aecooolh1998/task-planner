@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ITask } from 'src/app/types/types';
+import { ITask, TaskStatus } from 'src/app/types/types';
 
 @Component({
     selector: 'app-task-input',
@@ -20,7 +20,8 @@ export class TaskInputComponent implements OnInit {
 
     public ngOnInit(): void {
         this.taskInputForm = this.formBuilder.group({
-            taskDescription: ['']
+            name: [''],
+            description: ['']
         });
     }
 
@@ -28,7 +29,10 @@ export class TaskInputComponent implements OnInit {
         if (this.taskInputForm.valid) {
             const formValues = this.taskInputForm.value;
             const task: ITask = {
-                description: formValues.taskDescription
+                name: formValues.name,
+                description: formValues.description,
+                creationDate: new Date(),
+                status: TaskStatus.Open
             }
             this.taskSubmittedEvent.emit(task);
         }

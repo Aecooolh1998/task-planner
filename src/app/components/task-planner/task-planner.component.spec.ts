@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ITask } from 'src/app/types/types';
+import { ITask, TaskStatus } from 'src/app/types/types';
 import { TaskInputComponent } from '../task-input/task-input.component';
 import { TaskPlannerComponent } from './task-planner.component';
 
@@ -37,7 +37,10 @@ describe('TaskPlannerComponent', () => {
         it('should add the emitted task to the task list', () => {
             component.taskList = [];
             const task: ITask = {
-                description: 'Make Bed'
+                name: 'Bed',
+                description: 'Make Bed',
+                status: TaskStatus.Open,
+                creationDate: new Date()
             }
 
             component.addTaskToList(task);

@@ -1,7 +1,11 @@
 <form [formGroup]="taskInputForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
         <mat-label>Add Task</mat-label>
-        <input matInput type="text" formControlName="taskDescription">
+        <input matInput type="text" formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Task Description" formControlName="description"></textarea>
     </mat-form-field>
     <button type="submit" mat-raised-button color="primary">Add Task</button>
 </form>

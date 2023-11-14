@@ -1,5 +1,8 @@
 export interface ITask {
-    description: string
+    name: string;
+    description: string;
+    creationDate: Date;
+    status: TaskStatus
 }
 
 export enum LogLevel {
@@ -8,4 +11,9 @@ export enum LogLevel {
     Warn = "Warn",
     Error = "Error",
     Verbose = "Verbose"
+}
+
+export enum TaskStatus {
+    Open = 'Open',
+    Completed = 'Completed'
 }

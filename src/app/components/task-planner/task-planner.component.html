@@ -1,5 +1,10 @@
 <h1>{{title}}</h1>
 <app-task-input (taskSubmittedEvent)="addTaskToList($event)"></app-task-input>
 <div *ngIf="taskList">
-    <p *ngFor="let task of taskList">{{task.description}}</p>
+    <div *ngFor="let task of taskList">
+        <p>Name: {{task.name}}</p>
+        <p>Description: {{task.description}}</p>
+        <p>Creation Date: {{task.creationDate}}</p>
+        <p>Status: {{task.status}}</p>
+    </div>
 </div>
