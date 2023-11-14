@@ -1,4 +1,4 @@
-<form [formGroup]="taskInputForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="taskInputForm" (ngSubmit)="onSubmit()" class="task-input-form">
     <mat-form-field>
         <mat-label>Add Task</mat-label>
         <input matInput type="text" formControlName="name">
