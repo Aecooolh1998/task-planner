@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ITask, TaskStatus } from 'src/app/types/types';
 
 @Component({
@@ -20,8 +20,8 @@ export class TaskInputComponent implements OnInit {
 
     public ngOnInit(): void {
         this.taskInputForm = this.formBuilder.group({
-            name: [''],
-            description: ['']
+            name: ['', [Validators.required, Validators.minLength(5)]],
+            description: ['', [Validators.minLength(5)]]
         });
     }
 
