@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ITask, TaskStatus } from 'src/app/types/types';
@@ -19,6 +21,8 @@ describe('TaskPlannerComponent', () => {
                 ],
             imports: [
                 MatInputModule,
+                MatDatepickerModule,
+                MatNativeDateModule,
                 ReactiveFormsModule,
                 BrowserAnimationsModule
             ]
@@ -40,7 +44,8 @@ describe('TaskPlannerComponent', () => {
                 name: 'Bed',
                 description: 'Make Bed',
                 status: TaskStatus.Open,
-                creationDate: new Date()
+                creationDate: new Date(),
+                completionDate: new Date(2023, 10, 10)
             }
 
             component.addTaskToList(task);

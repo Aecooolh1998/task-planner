@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TaskStatus } from 'src/app/types/types';
@@ -8,6 +10,7 @@ import { TaskInputComponent } from './task-input.component';
 describe('TaskInputComponent', () => {
     let component: TaskInputComponent;
     let fixture: ComponentFixture<TaskInputComponent>;
+    let formBuilder: FormBuilder;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -16,6 +19,8 @@ describe('TaskInputComponent', () => {
             ],
             imports: [
                 MatInputModule,
+                MatDatepickerModule,
+                MatNativeDateModule,
                 FormsModule,
                 ReactiveFormsModule,
                 BrowserAnimationsModule
@@ -24,6 +29,7 @@ describe('TaskInputComponent', () => {
 
         fixture = TestBed.createComponent(TaskInputComponent);
         component = fixture.componentInstance;
+        formBuilder = TestBed.inject(FormBuilder);
         fixture.detectChanges();
     });
 
@@ -32,34 +38,57 @@ describe('TaskInputComponent', () => {
     });
 
     describe('ngOnInit', () => {
-        it('should create the taskInputForm and its controls', () => {
+        it('should create the taskInputForm and its controls with their validators', () => {
             component.ngOnInit();
 
-            expect(component.taskInputForm).toBeDefined();
-            expect(component.taskInputForm.valid).toBeTrue();
-            expect(component.taskInputForm.get('description')).toBeTruthy();
-            expect(component.taskInputForm.get('name')).toBeTruthy();
+            const nameControl = component.taskInputForm.get('name');
+            const descriptionControl = component.taskInputForm.get('description');
+            const completionDateControl = component.taskInputForm.get('completionDate');
+
+            expect(nameControl).toBeTruthy();
+            expect(descriptionControl).toBeTruthy();
+            expect(completionDateControl).toBeTruthy();
+            expect(nameControl?.valid).toBeFalse();
+            expect(nameControl?.hasError('required')).toBeTrue();
+            expect(nameControl?.hasError('minlength')).toBeFalse();
+            expect(descriptionControl?.valid).toBeTrue();
+            expect(descriptionControl?.hasError('minlength')).toBeFalse();
+            expect(completionDateControl?.valid).toBeFalse();
+            expect(completionDateControl?.hasError('required')).toBeTrue();
         });
     });
 
     describe('onSubmit', () => {
         it('should check the form is valid and emit the taskSubmittedEvent data', () => {
             component.taskInputForm.setValue({
-                name: 'Bed',
-                description: 'Make Bed'
+                name: 'Make Bed',
+                description: 'Make Bed Ready For The Evening',
+                completionDate: new Date(2023, 12, 21)
             });
             const taskSubmittedSpy = spyOn(component.taskSubmittedEvent, 'emit');
 
             component.onSubmit();
 
             expect(taskSubmittedSpy).toHaveBeenCalledWith({
-                name: 'Bed',
-                description: 'Make Bed',
+                name: 'Make Bed',
+                description: 'Make Bed Ready For The Evening',
                 status: TaskStatus.Open,
-                creationDate: new Date()
+                creationDate: new Date(),
+                completionDate: new Date(2023, 12, 21)
             });
         });
 
-        //TODO: Test For When it is invalid, no validators currently so it cannot be tested.
+        it('should not emit the taskSubmittedEvent data if the form is invalid', () => {
+            component.taskInputForm.setValue({
+                name: '',
+                description: 'Make Bed',
+                completionDate: new Date(2023, 12, 21)
+            });
+            const taskSubmittedSpy = spyOn(component.taskSubmittedEvent, 'emit');
+
+            component.onSubmit();
+
+            expect(taskSubmittedSpy).not.toHaveBeenCalled();
+        });
     });
 });

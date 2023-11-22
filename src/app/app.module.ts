@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { TaskInputComponent } from './components/task-input/task-input.component';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
     declarations: [
@@ -23,9 +25,11 @@ import { ReactiveFormsModule } from '@angular/forms';
         BrowserAnimationsModule,
         MatButtonModule,
         MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
         ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
