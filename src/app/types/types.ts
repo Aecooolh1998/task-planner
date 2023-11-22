@@ -2,7 +2,8 @@ export interface ITask {
     name: string;
     description: string;
     creationDate: Date;
-    status: TaskStatus
+    status: TaskStatus;
+    completionDate: Date;
 }
 
 export enum LogLevel {

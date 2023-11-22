@@ -21,7 +21,8 @@ export class TaskInputComponent implements OnInit {
     public ngOnInit(): void {
         this.taskInputForm = this.formBuilder.group({
             name: ['', [Validators.required, Validators.minLength(5)]],
-            description: ['', [Validators.minLength(5)]]
+            description: ['', [Validators.minLength(5)]],
+            completionDate: [null, [Validators.required]]
         });
     }
 
@@ -32,7 +33,8 @@ export class TaskInputComponent implements OnInit {
                 name: formValues.name,
                 description: formValues.description,
                 creationDate: new Date(),
-                status: TaskStatus.Open
+                status: TaskStatus.Open,
+                completionDate: formValues.completionDate
             }
             this.taskSubmittedEvent.emit(task);
         }

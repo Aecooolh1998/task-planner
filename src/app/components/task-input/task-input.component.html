@@ -3,12 +3,27 @@
         <mat-label>Add Task</mat-label>
         <input matInput type="text" formControlName="name">
         <mat-error *ngIf="taskInputForm.get('name')?.hasError('required')">Add Task is Required</mat-error>
-        <mat-error *ngIf="taskInputForm.get('name')?.hasError('minlength')">Task Name Must Be Five Characters Minimum</mat-error>
+        <mat-error *ngIf="taskInputForm.get('name')?.hasError('minlength')">Task Name Must Be Five Characters
+            Minimum</mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>Description</mat-label>
         <textarea matInput placeholder="Task Description" formControlName="description"></textarea>
-        <mat-error *ngIf="taskInputForm.get('description')?.hasError('minlength')">Task Description Must Be Five Characters Minimum</mat-error>
+        <mat-error *ngIf="taskInputForm.get('description')?.hasError('minlength')">Task Description Must Be Five
+            Characters Minimum</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Completion Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="completionDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker>
+            <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+        </mat-datepicker>
+        <mat-error *ngIf="taskInputForm.get('completionDate')?.hasError('required')">Completion Date is Required</mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary">Add Task</button>
 </form>
