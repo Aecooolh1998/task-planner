@@ -14,7 +14,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>Completion Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="completionDate">
+        <input matInput [matDatepicker]="picker" formControlName="completionDate" [min]="minDate" [max]="maxDate">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker>

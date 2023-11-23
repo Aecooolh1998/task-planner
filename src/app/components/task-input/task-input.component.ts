@@ -13,12 +13,15 @@ export class TaskInputComponent implements OnInit {
 
     public taskInputForm!: FormGroup;
     public tasks: ITask[] = [];
+    public minDate = new Date();
+    public maxDate = new Date();
 
     constructor(
         private readonly formBuilder: FormBuilder
     ) {}
 
     public ngOnInit(): void {
+        this.maxDate.setFullYear(this.minDate.getFullYear() + 1);
         this.taskInputForm = this.formBuilder.group({
             name: ['', [Validators.required, Validators.minLength(5)]],
             description: ['', [Validators.minLength(5)]],
